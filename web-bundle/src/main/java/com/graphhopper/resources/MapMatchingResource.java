@@ -69,6 +69,7 @@ public class MapMatchingResource {
     private final ObjectMapper objectMapper = Jackson.newObjectMapper();
     private final String osmDate;
 
+
     @Inject
     public MapMatchingResource(GraphHopper graphHopper, ProfileResolver profileResolver, TranslationMap trMap, MapMatchingRouterFactory mapMatchingRouterFactory) {
         this.graphHopper = graphHopper;
@@ -97,7 +98,8 @@ public class MapMatchingResource {
             @QueryParam("gpx.track") @DefaultValue("true") boolean withTrack,
             @QueryParam("traversal_keys") @DefaultValue("false") boolean enableTraversalKeys,
             @QueryParam("gps_accuracy") @DefaultValue("40") double gpsAccuracy) {
-
+            
+        throw new IllegalArgumentException("HOBOBOBOBOBOBOBOBBOBOBOBOBOBOBOBBOBO");
         boolean writeGPX = "gpx".equalsIgnoreCase(outType);
         if (gpx.trk.isEmpty()) {
             throw new IllegalArgumentException("No tracks found in GPX document. Are you using waypoints or routes instead?");
