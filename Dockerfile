@@ -7,7 +7,7 @@ WORKDIR /app
 # Copy local GraphHopper JAR, configuration file, and OSM data
 COPY graphhopper-web-8.0.jar .
 COPY config-example.yml .
-COPY slovakia-latest.osm.pbf .
+ADD http://download.geofabrik.de/europe/slovakia-latest.osm.pbf .
 
 # Stage 2: Runtime Stage
 FROM openjdk:17-jdk-slim
