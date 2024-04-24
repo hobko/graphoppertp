@@ -28,6 +28,7 @@ graphhopper:
   # To prevent long running routing queries you should usually enable either speed or hybrid mode for all the given
   # profiles (see below). Or at least limit the number of `routing.max_visited_nodes`.
 
+
   profiles:
     - name: car
       vehicle: car
@@ -38,6 +39,10 @@ graphhopper:
       vehicle: foot
       custom_model:
         distance_influence: 20
+    
+    - name: bus
+      vehicle: roads
+      custom_model_files: [bus.json]
 #      turn_costs: true
 #      u_turn_costs: 60
 
@@ -48,7 +53,7 @@ graphhopper:
 
   # instead of the inbuilt custom models (see ./core/src/main/resources/com/graphhopper/custom_models)
   # you can specify a folder where to find your own custom model files
-  # custom_models.directory: custom_models
+  custom_models.directory: custom_models
 
   # Speed mode:
   # Its possible to speed up routing by doing a special graph preparation (Contraction Hierarchies, CH). This requires
@@ -59,6 +64,8 @@ graphhopper:
   profiles_ch:
     - profile: car
     - profile: foot
+    - profile: bus
+
 
   # Hybrid mode:
   # Similar to speed mode, the hybrid mode (Landmarks, LM) also speeds up routing by doing calculating auxiliary data
@@ -79,6 +86,7 @@ graphhopper:
   # name=mycustomvehicle,turn_costs=true,transportation_mode=MOTOR_VEHICLE
   # But you should prefer to configure the turn_costs via the profile configuration.
   # Other standard vehicles: foot,bike,mtb,racingbike,wheelchair
+  graph.vehicles: roads|transportation_mode=BUS,car
 
 
   #### Encoded Values ####
@@ -89,6 +97,7 @@ graphhopper:
   #           hazmat,hazmat_tunnel,hazmat_water,lanes,osm_way_id,toll,track_type,mtb_rating,hike_rating,horse_rating,
   #           country,curvature,average_slope,max_slope
   # graph.encoded_values: surface,toll,track_type
+  graph.encoded_values: max_width,max_height
 
   #### Speed, hybrid and flexible mode ####
 
